@@ -51,13 +51,39 @@ public class OkHttpUtils {
                 if(resultCallback!=null){
                     resultCallback.getWeather(bean);
                 }
-              Showbean showbean=JsonUtils.showbean(res);
-                if(resultCallback!=null){
-                    resultCallback.getShow(showbean);
-                }
+
             }
         });
     }
+    public static void getShowRequest(String url2,ResultCallback resultCallback1){
+        getInstance().sendRequest1(url2,resultCallback1);
+    }
+
+    private void sendRequest1(String url2, final ResultCallback resultCallback1) {
+        OkHttpClient client=new OkHttpClient.Builder().connectTimeout(2, TimeUnit.SECONDS).build();
+        final Request request=new Request.Builder().url(url2).build();
+        client.newCall(request).enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                if(resultCallback1!=null){
+                    resultCallback1.onFailure(e);
+                }
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                res=response.body().string();
+                Log.i("res",res);
+                Showbean showbean=JsonUtils.getShow(res);
+                if(resultCallback1!=null){
+                    resultCallback1.getShow(showbean);
+                }
+
+            }
+        });
+    }
+
+
     public interface ResultCallback{
         void getWeather(WeatherBean weatherBean);
         void getShow(Showbean showbean);

@@ -47,7 +47,7 @@ public class MainActivity extends AppCompatActivity implements  IWeatherView, Vi
               presenter.loadWeather("北京");
               break;
           case R.id.btn_show:
-              presenter.loadShow("作者");
+              presenter.loadShow("金瓶梅");
 
       }
     }
@@ -87,11 +87,8 @@ public class MainActivity extends AppCompatActivity implements  IWeatherView, Vi
         runOnUiThread(new TimerTask() {
             @Override
             public void run() {
-                if(showbean.getStart()==304){
-                    Toast.makeText(MainActivity.this,showbean.getCount(),Toast.LENGTH_SHORT).show();
-                }else{
-                    author.setText("作者："+showbean.getBooks()+"图书标题");
-                }
+
+                author.setText("作者："+showbean.getBooks().get(0).getAuthor()+"图书标题"+showbean.getBooks().get(0).getSubtitle());
             }
         });
     }

@@ -15,10 +15,10 @@ public class JsonUtils {
         WeatherBean weatherBean=gson.fromJson(res,WeatherBean.class);
         return weatherBean;
     }
-    public static Showbean showbean(String res){
+
+    public static Showbean getShow(String res) {
         Gson gson=new Gson();
         Showbean showbean=gson.fromJson(res,Showbean.class);
         return showbean;
     }
-
 }

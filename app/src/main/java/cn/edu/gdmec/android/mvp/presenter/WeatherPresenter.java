@@ -13,7 +13,7 @@ import cn.edu.gdmec.android.mvp.model.WeatherModel;
 
 public class WeatherPresenter  implements  IWeatherPresenter,ILoadListener{
     private String url="https://www.sojson.com/open/api/weather/json.shtml?city=";
-    private String url2="https://api.douban.com/v2/book/search?author=";
+    private String url2="https://api.douban.com/v2/book/search?q=";
     private IWeatherView iWeatherView;
     private IWeatherModel iWeatherModel;
 

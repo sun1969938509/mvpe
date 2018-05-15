@@ -20,7 +20,6 @@ public class WeatherModel  implements  IWeatherModel{
 
             @Override
             public void getShow(Showbean showbean) {
-                loadListener.onSuccess(showbean);
             }
 
 
@@ -36,21 +35,21 @@ public class WeatherModel  implements  IWeatherModel{
 
     @Override
     public void loadshow(String url2, final ILoadListener loadListener) {
-                OkHttpUtils.ResultCallback resultCallback=new OkHttpUtils.ResultCallback() {
+                OkHttpUtils.ResultCallback resultCallback1=new OkHttpUtils.ResultCallback() {
             public void getShow(Showbean showbean) {
                 loadListener.onSuccess(showbean);
             }
 
                     @Override
                     public void getWeather(WeatherBean weatherBean) {
-                        loadListener.onSuccess(weatherBean);
                     }
 
                     @Override
             public void onFailure(Exception e) {
-  loadListener.onFailure(e);
+                loadListener.onFailure(e);
             }
         };
+           OkHttpUtils.getShowRequest(url2,resultCallback1);
     }
 
 
